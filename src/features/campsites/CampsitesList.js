@@ -1,3 +1,44 @@
+import { Col, Row } from 'reactstrap';
+import CampsiteCard from "./CampsiteCard";
+import { selectAllCampsites } from './campsitesSlice';
+
+
+const CampsitesList = () => {
+    const campsites = selectAllCampsites();
+    return (
+        <Row className='ms-auto'>
+            {campsites.map((campsite) => {
+                        return (
+                            <Col md='5' className='m-4' key={campsite.id}>
+                                <CampsiteCard campsite={campsite} />
+                            </Col>
+                        );
+                    })}
+        </Row>
+
+    );
+};
+
+export default CampsitesList;
+
+// using slices and selectors to manage state
+
+    // added import { selectAllCampsites } from './campsitesSlice';
+
+    // added const campsites = selectAllCampsites();
+
+    // {campsites.map((campsite) => {
+         // changed CAMPSITES to campsites (which is the selector function that returns the entire array of campsites)
+
+    // removed import { CAMPSITES } from '../../app/shared/CAMPSITES';
+        // i love that
+
+
+
+
+
+// old
+/*
 import { CAMPSITES } from '../../app/shared/CAMPSITES';
 import { Col, Row } from 'reactstrap';
 import CampsiteCard from "./CampsiteCard";
@@ -46,4 +87,4 @@ export default CampsitesList;
 // app.js does not need to know how the CampsitesList component works
 // it only needs to know that it exists and how to render it
 // having app.js be clean and simple makes it easier to maintain and update and less of a clusterfuck
-
+*/
