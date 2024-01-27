@@ -9,7 +9,9 @@ export const selectCampsiteById = (id) => { // another selector function
 }
 
 
-
+export const selectFeaturedCampsite = () => {
+    return CAMPSITES.find((campsite) => campsite.featured) // .find() intakes a test function
+};
 
 
 

@@ -37,3 +37,9 @@ breaadcrumb links
         - 1st item - current state value you initalized (myCounter) (name)
         - 2nd item - function to use whne you want to update state value (setMyCounter) (setName)
     - useEffect() gives components access to lifecyccle methods
+
+
+## Single Page Applications
+- breakout into individual "pages"
+- route via React Router
+- add navigaton links to header and footer (react router routes requests)
