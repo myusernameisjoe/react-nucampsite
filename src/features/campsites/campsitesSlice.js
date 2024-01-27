@@ -5,7 +5,7 @@ export const selectAllCampsites = () => { // selector function
 };
 
 export const selectCampsiteById = (id) => { // another selector function
-    return CAMPSITES.find((campsite) => campsite.id === id)
+    return CAMPSITES.find((campsite) => campsite.id === parseInt(id))
 }
 
 
