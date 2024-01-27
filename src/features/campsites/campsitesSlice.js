@@ -4,6 +4,31 @@ export const selectAllCampsites = () => { // selector function
     return CAMPSITES; // selects and returns entire array of campsites
 };
 
+export const selectCampsiteById = (id) => { // another selector function
+    return CAMPSITES.find((campsite) => campsite.id === id)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// old with selectRandomCampsite placeholder previously used in nucampsite/src/pages/CampsitesDirectoryPage.js
+/*
+
+import { CAMPSITES } from '../../app/shared/CAMPSITES.js'
+
+export const selectAllCampsites = () => { // selector function
+    return CAMPSITES; // selects and returns entire array of campsites
+};
+
 export const selectRandomCampsite = () => { // another selector function
     return CAMPSITES[Math.floor(Math.random() * CAMPSITES.length)]; // selects and returns a random campsite
 };
@@ -25,4 +50,4 @@ export const selectRandomCampsite = () => { // another selector function
 // access the data in one place and then use it in multiple places
 
 // if different components need different portions of the data, we can create multiple selector functions to return different portions of the data
-
+*/
