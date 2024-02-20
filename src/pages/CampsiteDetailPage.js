@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Container, Row} from 'reactstrap';
 import { useParams } from 'react-router-dom';
 import { selectCampsiteById } from '../features/campsites/campsitesSlice';
@@ -7,7 +8,8 @@ import SubHeader from '../components/SubHeader';
 
 const CampsiteDetailPage = () => {
     const { campsiteId } = useParams(); // destructure campsiteId property from the object returned by useParams() hook (will return a string)
-    const campsite = selectCampsiteById(campsiteId); // once the campsiteId is changed, react will force the component to re-render and the selectedCampsite will be updated
+    const campsite = useSelector(selectCampsiteById(campsiteId));
+    console.log('campsite:', campsite);
 
     return (
         <Container>
