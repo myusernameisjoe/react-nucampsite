@@ -9,6 +9,7 @@ import CampsitesDirectoryPage from './pages/CampsitesDirectoryPage';
 import CampsiteDetailPage from './pages/CampsiteDetailPage';
 import AboutPage from './pages/AboutPage';
 import { fetchCampsites } from './features/campsites/campsitesSlice'; // import the thunk action creator function
+import { fetchPartners } from './features/partners/partnersSlice'; // import the thunk action creator function
 import './App.css';
 
 
@@ -18,6 +19,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCampsites()); // dispatch the thunk action creator function
+    dispatch(fetchPartners()); // dispatch the thunk action creator function
   }, [dispatch]); // adding dispatch as a dependency to the useEffect hook
 
   return (
