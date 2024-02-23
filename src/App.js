@@ -1,3 +1,5 @@
+import { useEffect } from 'react'; // to wrap around side effect block of code
+import { useDispatch } from 'react-redux'; // to dispatch thunk which creates a side effect
 import { Routes, Route } from 'react-router-dom';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
@@ -6,11 +8,18 @@ import Footer from './components/Footer';
 import CampsitesDirectoryPage from './pages/CampsitesDirectoryPage';
 import CampsiteDetailPage from './pages/CampsiteDetailPage';
 import AboutPage from './pages/AboutPage';
+import { fetchCampsites } from './features/campsites/campsitesSlice'; // import the thunk action creator function
 import './App.css';
 
 
 
 function App() {
+  const dispatch = useDispatch(); // create a dispatch function to dispatch the thunk action creator function
+
+  useEffect(() => {
+    dispatch(fetchCampsites()); // dispatch the thunk action creator function
+  }, [dispatch]); // adding dispatch as a dependency to the useEffect hook
+
   return (
     <div className="App">
       <Header />

@@ -43,3 +43,16 @@ breaadcrumb links
 - breakout into individual "pages"
 - route via React Router
 - add navigaton links to header and footer (react router routes requests)
+
+
+## JSON-server
+
+- until now hard-coded data
+- instal RESTful development server (JSON-server) (runs locally on my own computer)
+- simulate back-end server (can recieve and respond to HTTP reqeusts)
+- makes data avialble at paticular endpoints
+- in termal output from JSON server can see status codes
+
+
+- json-server -H 0.0.0.0 --watch db.json -p 3001 -d 2000
+- command + c restarts 

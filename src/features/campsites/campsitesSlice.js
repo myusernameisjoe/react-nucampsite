@@ -1,16 +1,51 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { CAMPSITES } from '../../app/shared/CAMPSITES.js'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+// import { CAMPSITES } from '../../app/shared/CAMPSITES';
+import { baseUrl } from '../../app/shared/baseUrl';
+import { mapImageURL } from '../../utils/mapImageURL';
 
+// createAsyncThunk
+export const fetchCampsites = createAsyncThunk(
+    'campsites/fetchCampsites', // string used to identify the action in the Redux DevTools
+    async () => { // function that returns a promise
+        const response = await fetch(baseUrl + 'campsites');
+        if (!response.ok) {
+            return Promise.reject('Unable to fetch, status: ' + response.status);
+        }
+        const data = await response.json();
+        return data;
+    }
+);
+
+// create 3 stateful variables
 const initialState = {
-    campsitesArray: CAMPSITES
+    campsitesArray: [],
+    isLoading: true,
+    errMsg: ''
 };
 
-const campsiteSlice = createSlice({
+const campsitesSlice = createSlice({
     name: 'campsites',
-    initialState
+    initialState,
+    reducers: {},
+
+    // create 3 extraReducers (pending, fulfilled, rejected) to handle the fetchCampsites action (createAsyncThunk action creator)
+    extraReducers: {
+        [fetchCampsites.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [fetchCampsites.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = '';
+            state.campsitesArray = mapImageURL(action.payload);
+        },
+        [fetchCampsites.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = action.error ? action.error.message : 'Fetch failed';
+        }
+    }
 });
 
-export const campsitesReducer = campsiteSlice.reducer;
+export const campsitesReducer = campsitesSlice.reducer;
 
 export const selectAllCampsites = (state) => {
     return state.campsites.campsitesArray;
@@ -22,11 +57,9 @@ export const selectCampsiteById = (id) => (state) => {
     );
 };
 
-
 export const selectFeaturedCampsite = (state) => {
     return state.campsites.campsitesArray.find((campsite) => campsite.featured);
 };
-
 
 
 
